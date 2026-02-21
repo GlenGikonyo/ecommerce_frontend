@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../services/product_service.dart';
 import '../services/api_service.dart';
-import '../models/cart_item.dart';
+// import '../models/cart_item.dart';
 import 'cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {

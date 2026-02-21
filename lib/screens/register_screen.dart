@@ -10,7 +10,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -19,6 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _register() async {
     setState(() => _isLoading = true);
+    
 
     bool success = await _authService.register(
       _name.text.trim(),
@@ -28,26 +28,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     setState(() => _isLoading = false);
 
-if (success) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text("Registration successful")),
-  );
+    if (success) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Registration successful")));
 
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (_) => const LoginScreen()),
-  );
-}
-else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Registration failed")),
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const LoginScreen()),
       );
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Registration failed")));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -57,15 +55,11 @@ else {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 const SizedBox(height: 60),
 
                 const Text(
                   "Create\nAccount",
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
 
                 const SizedBox(height: 40),
@@ -141,18 +135,18 @@ else {
                 Center(
                   child: TextButton(
                     onPressed: () {
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (_) => const LoginScreen()),
-  );
-},
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => const LoginScreen()),
+                      );
+                    },
 
                     child: const Text(
                       "Already have an account? Login",
                       style: TextStyle(color: Colors.redAccent),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
